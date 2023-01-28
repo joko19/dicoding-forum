@@ -45,7 +45,7 @@ function DetailThread() {
           />
           <div>
             <div className="text-lg">{threadDetail.owner.name}</div>
-            <div className="text-gray-500 text-sm">
+            <div className="text-gray-500 dark:text-gray-300 text-sm">
               {new Date(threadDetail?.createdAt).toDateString()}
             </div>
           </div>
@@ -67,7 +67,7 @@ function DetailThread() {
           <input
             type="text"
             placeholder="Tulis Komentar"
-            className="border p-2 rounded focus:outline-none w-full"
+            className="border p-2 rounded focus:outline-none w-full dark:bg-gray-600 dark:text-white"
             value={content}
             onChange={(e) => setContent(e.target.value)}
             onKeyDown={(e) => e.key === "Enter" && submitComment()}
@@ -89,7 +89,7 @@ function DetailThread() {
               <div>
                 <div>
                   <div className="text-lg">{item.owner.name}</div>
-                  <div className="text-gray-500 text-sm">{item.content}</div>
+                  <div className="text-gray-500 dark:text-gray-300 text-sm">{item.content}</div>
                 </div>
                 <div className="flex gap-2 pb-2 mb-2">
                   <div className="flex items-center rounded-full gap-1">

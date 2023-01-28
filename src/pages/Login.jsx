@@ -1,12 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-// import {
-//   getAccessToken,
-//   getUserLogged,
-//   login,
-//   putAccessToken,
-// } from "../utils/network-data";
 import { useNavigate } from "react-router-dom";
 import { asyncSetAuthUser } from "../states/authUser/action";
 

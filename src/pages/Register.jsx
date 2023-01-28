@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-// import { register } from "../utils/network-data";
 import { useNavigate } from "react-router-dom";
 import { asyncRegisterUser } from "../states/users/action";
 
