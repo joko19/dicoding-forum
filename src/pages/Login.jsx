@@ -1,20 +1,19 @@
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
-import { asyncSetAuthUser } from "../states/authUser/action";
+import React, { useState } from 'react'
+import { useDispatch } from 'react-redux'
+import { Link, useNavigate } from 'react-router-dom'
+import { asyncSetAuthUser } from '../states/authUser/action'
 
-function Login() {
-  const [email, setEmail] = useState();
-  const [password, setPassword] = useState();
-  const navigate = useNavigate();
+function Login () {
+  const [email, setEmail] = useState()
+  const [password, setPassword] = useState()
+  const navigate = useNavigate()
 
-  const dispatch = useDispatch();
+  const dispatch = useDispatch()
 
   const handleSubmit = () => {
-    dispatch(asyncSetAuthUser({ email, password }));
-    navigate('/');
-  };
+    dispatch(asyncSetAuthUser({ email, password }))
+    navigate('/')
+  }
 
   return (
     <div className="dark:bg-gray-700 dark:text-white min-h-screen">
@@ -43,14 +42,14 @@ function Login() {
           Login
         </button>
         <span className="mt-6 text-gray-500 dark:text-gray-300 text-center text-sm">
-          Belum punya akun?{" "}
+          Belum punya akun?{' '}
           <Link to="/register" className="text-blue-500 font-bold">
             Daftar
           </Link>
         </span>
       </div>
     </div>
-  );
+  )
 }
 
-export default Login;
+export default Login

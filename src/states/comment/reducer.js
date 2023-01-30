@@ -1,11 +1,11 @@
-import { ActionType } from './action';
- 
-function commentsReducer(Comments = [], action = {}) {
+import { ActionType } from './action'
+
+function commentsReducer (Comments = [], action = {}) {
   switch (action.type) {
     case ActionType.RECEIVE_COMMENTS:
-      return action.payload.comments;
+      return action.payload.comments
     case ActionType.ADD_COMMENT:
-      return [action.payload.Comment, ...Comments];
+      return [action.payload.Comment, ...Comments]
     // case ActionType.TOGGLE_LIKE_COMMENT:
     //   return Comments.map((Comment) => {
     //     if (Comment.id === action.payload.CommentId) {
@@ -19,8 +19,8 @@ function commentsReducer(Comments = [], action = {}) {
     //     return Comment;
     //   });
     default:
-      return Comments;
+      return Comments
   }
 }
- 
-export default commentsReducer;
+
+export default commentsReducer

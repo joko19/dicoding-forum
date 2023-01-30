@@ -1,12 +1,12 @@
-import { ActionType } from './action';
- 
-function usersReducer(users = [], action = {}) {
+import { ActionType } from './action'
+
+function usersReducer (users = [], action = {}) {
   switch (action.type) {
     case ActionType.RECEIVE_USERS:
-      return action.payload.users;
+      return action.payload.users
     default:
-      return users;
+      return users
   }
 }
- 
-export default usersReducer;
+
+export default usersReducer

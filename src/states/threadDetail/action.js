@@ -1,65 +1,64 @@
-import api from '../../utils/api';
- 
+import api from '../../utils/api'
+
 const ActionType = {
   RECEIVE_THREAD_DETAIL: 'RECEIVE_THREAD_DETAIL',
   CLEAR_THREAD_DETAIL: 'CLEAR_THREAD_DETAIL',
-  TOGGLE_LIKE_THREAD_DETAIL: 'TOGGLE_LIKE_THREAD_DETAIL',
-};
- 
-function receiveThreadDetailActionCreator(threadDetail) {
+  TOGGLE_LIKE_THREAD_DETAIL: 'TOGGLE_LIKE_THREAD_DETAIL'
+}
 
-    return {
+function receiveThreadDetailActionCreator (threadDetail) {
+  return {
     type: ActionType.RECEIVE_THREAD_DETAIL,
     payload: {
-      threadDetail,
-    },
-  };
+      threadDetail
+    }
+  }
 }
- 
-function clearThreadDetailActionCreator() {
+
+function clearThreadDetailActionCreator () {
   return {
-    type: ActionType.CLEAR_THREAD_DETAIL,
-  };
+    type: ActionType.CLEAR_THREAD_DETAIL
+  }
 }
- 
-function toggleLikeThreadDetailActionCreator(userId) {
+
+function toggleLikeThreadDetailActionCreator (userId) {
   return {
     type: ActionType.TOGGLE_LIKE_THREAD_DETAIL,
     payload: {
-      userId,
-    },
-  };
+      userId
+    }
+  }
 }
- 
-function asyncReceiveThreadDetail(threadId) {
+
+function asyncReceiveThreadDetail (threadId) {
   return async (dispatch) => {
     try {
-      const threadDetail = await api.getThreadDetail(threadId);
-      dispatch(receiveThreadDetailActionCreator(threadDetail));
+      const threadDetail = await api.getThreadDetail(threadId)
+      dispatch(receiveThreadDetailActionCreator(threadDetail))
     } catch (error) {
-      alert(error.message);
+      alert(error.message)
     }
-  };
+  }
 }
- 
-function asyncToogleLikeThreadDetail() {
+
+function asyncToogleLikeThreadDetail () {
   return async (dispatch, getState) => {
-    const { authUser, threadDetail } = getState();
-    dispatch(toggleLikeThreadDetailActionCreator(authUser.id));
- 
+    const { authUser, threadDetail } = getState()
+    dispatch(toggleLikeThreadDetailActionCreator(authUser.id))
+
     try {
-      await api.toggleLikeThread(threadDetail.id);
+      await api.toggleLikeThread(threadDetail.id)
     } catch (error) {
-      alert(error.message);
+      alert(error.message)
     }
-  };
+  }
 }
- 
+
 export {
   ActionType,
   receiveThreadDetailActionCreator,
   clearThreadDetailActionCreator,
   toggleLikeThreadDetailActionCreator,
   asyncReceiveThreadDetail,
-  asyncToogleLikeThreadDetail,
-};
+  asyncToogleLikeThreadDetail
+}

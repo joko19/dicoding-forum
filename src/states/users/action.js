@@ -1,26 +1,26 @@
-import api from "../../utils/api";
+import api from '../../utils/api'
 
 const ActionType = {
-  RECEIVE_USERS: "RECEIVE_USERS",
-};
+  RECEIVE_USERS: 'RECEIVE_USERS'
+}
 
-function receiveUsersActionCreator(users) {
+function receiveUsersActionCreator (users) {
   return {
     type: ActionType.RECEIVE_USERS,
     payload: {
-      users,
-    },
-  };
+      users
+    }
+  }
 }
 
-function asyncRegisterUser({ name, email, password }) {
+function asyncRegisterUser ({ name, email, password }) {
   return async () => {
     try {
-      await api.register({ name, email, password });
+      await api.register({ name, email, password })
     } catch (error) {
-      alert(error.message);
+      alert(error.message)
     }
-  };
+  }
 }
 
-export { ActionType, receiveUsersActionCreator, asyncRegisterUser };
+export { ActionType, receiveUsersActionCreator, asyncRegisterUser }

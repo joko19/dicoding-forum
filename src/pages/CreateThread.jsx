@@ -1,26 +1,26 @@
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import Error from "../components/Error";
-import { Header } from "../components/Header";
-import { asyncAddThread } from "../states/thread/action";
+import React, { useState } from 'react'
+import { useDispatch } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
+import Error from '../components/Error'
+import { Header } from '../components/Header'
+import { asyncAddThread } from '../states/thread/action'
 
-function CreateThread() {
-  const [title, setTitle] = useState("");
-  const [body, setBody] = useState("");
-  const [category, setCategory] = useState("");
-  const [error, setError] = useState(false);
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
+function CreateThread () {
+  const [title, setTitle] = useState('')
+  const [body, setBody] = useState('')
+  const [category, setCategory] = useState('')
+  const [error, setError] = useState(false)
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
 
   const handleSave = () => {
     if (title && body) {
-      dispatch(asyncAddThread({ title, body, category }));
-      navigate("/");
+      dispatch(asyncAddThread({ title, body, category }))
+      navigate('/')
     } else {
-      setError(true);
+      setError(true)
     }
-  };
+  }
 
   return (
     <div className="dark:bg-gray-700 dark:text-white min-h-screen">
@@ -37,7 +37,7 @@ function CreateThread() {
             maxLength={50}
           />
           <span className="text-xs text-right text-gray-500 dark:text-gray-300  mb-2">
-            Sisa Karakter:{50 - title.length}{" "}
+            Sisa Karakter:{50 - title.length}{' '}
           </span>
 
           <input
@@ -67,7 +67,7 @@ function CreateThread() {
         </div>
       </div>
     </div>
-  );
+  )
 }
 
-export default CreateThread;
+export default CreateThread

@@ -1,15 +1,14 @@
 const ActionType = {
-  RECEIVE_LEADERBOARDS: "RECEIVE_LEADERBOARD",
-};
+  RECEIVE_LEADERBOARDS: 'RECEIVE_LEADERBOARD'
+}
 
-function receiveLeaderboardActionCreator(leaderboards) {
-
+function receiveLeaderboardActionCreator (leaderboards) {
   return {
     type: ActionType.RECEIVE_LEADERBOARDS,
     payload: {
-      leaderboards,
-    },
-  };
+      leaderboards
+    }
+  }
 }
 
-export { ActionType, receiveLeaderboardActionCreator };
+export { ActionType, receiveLeaderboardActionCreator }

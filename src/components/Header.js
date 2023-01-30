@@ -1,32 +1,30 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import { useLocation } from "react-router-dom";
-import { CgProfile } from "react-icons/cg";
-import { FiLogOut } from "react-icons/fi";
-import { useNavigate } from "react-router-dom";
-import { asyncUnsetAuthUser } from "../states/authUser/action";
-import { useDispatch } from "react-redux";
+import React from 'react'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
+import { CgProfile } from 'react-icons/cg'
+import { FiLogOut } from 'react-icons/fi'
+import { asyncUnsetAuthUser } from '../states/authUser/action'
+import { useDispatch } from 'react-redux'
 
-export function Header() {
-  const { pathname } = useLocation();
-  const navigate = useNavigate();
-  const dispatch = useDispatch(); 
-  
+export function Header () {
+  const { pathname } = useLocation()
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
+
   const TABS = [
     {
-      label: "Threads",
-      url: "/",
+      label: 'Threads',
+      url: '/'
     },
     {
-      label: "Leaderboards",
-      url: "/leaderboards",
-    },
-  ];
+      label: 'Leaderboards',
+      url: '/leaderboards'
+    }
+  ]
 
   const handleLogout = () => {
-    dispatch(asyncUnsetAuthUser());
-    navigate("/login");
-  };
+    dispatch(asyncUnsetAuthUser())
+    navigate('/login')
+  }
 
   return (
     <header>
@@ -48,8 +46,8 @@ export function Header() {
               key={index}
               className={`${
                 item.url === pathname
-                  ? "font-bold border-b-2 border-black"
-                  : "text-gray-500 dark:text-gray-200"
+                  ? 'font-bold border-b-2 border-black'
+                  : 'text-gray-500 dark:text-gray-200'
               }`}
             >
               {item.label}
@@ -61,5 +59,5 @@ export function Header() {
         </Link>
       </div>
     </header>
-  );
+  )
 }

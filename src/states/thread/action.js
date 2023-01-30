@@ -1,85 +1,83 @@
-import api from "../../utils/api";
+import api from '../../utils/api'
 
 const ActionType = {
-  RECEIVE_THREADS: "RECEIVE_THREADS",
-  ADD_THREAD: "ADD_THREAD",
-  TOGGLE_UPVOTE_THREAD: "TOGGLE_UPVOTE_THREAD",
-  TOGGLE_DOWNVOTE_THREAD: "TOGGLE_DOWNVOTE_THREAD",
-};
+  RECEIVE_THREADS: 'RECEIVE_THREADS',
+  ADD_THREAD: 'ADD_THREAD',
+  TOGGLE_UPVOTE_THREAD: 'TOGGLE_UPVOTE_THREAD',
+  TOGGLE_DOWNVOTE_THREAD: 'TOGGLE_DOWNVOTE_THREAD'
+}
 
-function receiveThreadsActionCreator(threads) {
+function receiveThreadsActionCreator (threads) {
   return {
     type: ActionType.RECEIVE_THREADS,
     payload: {
-      threads,
-    },
-  };
+      threads
+    }
+  }
 }
 
-function addThreadActionCreator(thread) {
+function addThreadActionCreator (thread) {
   return {
     type: ActionType.ADD_THREAD,
     payload: {
-      thread,
-    },
-  };
+      thread
+    }
+  }
 }
 
-function upVoteThreadActionCreator({ id }) {
+function upVoteThreadActionCreator ({ id }) {
   return {
     type: ActionType.TOGGLE_UPVOTE_THREAD,
     payload: {
-      id,
-    },
-  };
+      id
+    }
+  }
 }
 
-function downVoteThreadActionCreator({ id }) {
+function downVoteThreadActionCreator ({ id }) {
   return {
     type: ActionType.TOGGLE_DOWNVOTE_THREAD,
     payload: {
-      id,
-    },
-  };
+      id
+    }
+  }
 }
 
-function asyncAddThread({ title, body, category }) {
+function asyncAddThread ({ title, body, category }) {
   return async (dispatch) => {
     try {
-      const thread = await api.createThread({ title, body, category });
-      dispatch(addThreadActionCreator(thread));
+      const thread = await api.createThread({ title, body, category })
+      dispatch(addThreadActionCreator(thread))
     } catch (error) {
-      alert(error.message);
+      alert(error.message)
     }
-  };
+  }
 }
 
-function asyncUpVoteThread({id}) {
+function asyncUpVoteThread ({ id }) {
   return async (dispatch) => {
-    
-    dispatch(upVoteThreadActionCreator({ id }));
-    
+    dispatch(upVoteThreadActionCreator({ id }))
+
     try {
-      await api.upVoteThread(id);
+      await api.upVoteThread(id)
     } catch (error) {
-      alert(error.message);
-      dispatch(upVoteThreadActionCreator({ id }));
+      alert(error.message)
+      dispatch(upVoteThreadActionCreator({ id }))
     }
-  };
+  }
 }
 
-function asyncDownVoteThread({id}) {
+function asyncDownVoteThread ({ id }) {
   return async (dispatch) => {
-    
-    dispatch(downVoteThreadActionCreator({ id }));
-    
+    dispatch(downVoteThreadActionCreator({ id }))
+
     try {
-      await api.downVoteThread(id);
+      await api.downVoteThread(id)
     } catch (error) {
-      alert(error.message);
-      dispatch(downVoteThreadActionCreator({ id }));
+      alert(error.message)
+      dispatch(downVoteThreadActionCreator({ id }))
     }
-  };
+  }
 }
 
 export {
@@ -91,4 +89,4 @@ export {
   asyncAddThread,
   asyncUpVoteThread,
   asyncDownVoteThread
-};
+}

@@ -1,47 +1,47 @@
-import api from "../../utils/api";
+import api from '../../utils/api'
 
 const ActionType = {
-  SET_AUTH_USER: "SET_AUTH_USER",
-  UNSET_AUTH_USER: "UNSET_AUTH_USER",
-};
+  SET_AUTH_USER: 'SET_AUTH_USER',
+  UNSET_AUTH_USER: 'UNSET_AUTH_USER'
+}
 
-function setAuthUserActionCreator(authUser) {
+function setAuthUserActionCreator (authUser) {
   return {
     type: ActionType.SET_AUTH_USER,
     payload: {
-      authUser,
-    },
-  };
+      authUser
+    }
+  }
 }
 
-function unsetAuthUserActionCreator() {
+function unsetAuthUserActionCreator () {
   return {
     type: ActionType.UNSET_AUTH_USER,
     payload: {
-      authUser: null,
-    },
-  };
+      authUser: null
+    }
+  }
 }
 
-function asyncSetAuthUser({ email, password }) {
+function asyncSetAuthUser ({ email, password }) {
   return async (dispatch) => {
     try {
-      const token = await api.login({ email, password });
-      api.putAccessToken(token);
-      const authUser = await api.getOwnProfile();
+      const token = await api.login({ email, password })
+      api.putAccessToken(token)
+      const authUser = await api.getOwnProfile()
 
-      dispatch(setAuthUserActionCreator(authUser));
+      dispatch(setAuthUserActionCreator(authUser))
     } catch (error) {
-      alert(error.message);
+      alert(error.message)
     }
-  };
+  }
 }
 
-function asyncUnsetAuthUser() {
+function asyncUnsetAuthUser () {
   return (dispatch) => {
-    dispatch(unsetAuthUserActionCreator());
-    api.putAccessToken("");
-  };
+    dispatch(unsetAuthUserActionCreator())
+    api.putAccessToken('')
+  }
 }
 
 export {
@@ -49,5 +49,5 @@ export {
   setAuthUserActionCreator,
   unsetAuthUserActionCreator,
   asyncSetAuthUser,
-  asyncUnsetAuthUser,
-};
+  asyncUnsetAuthUser
+}

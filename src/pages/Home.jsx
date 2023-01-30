@@ -1,32 +1,32 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
-import { BiUpvote, BiDownvote, BiCommentDetail } from "react-icons/bi";
-import {Header} from "../components/Header";
-import { asyncPopulateUsersAndThreads } from "../states/shared/action";
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { Link } from 'react-router-dom'
+import { BiUpvote, BiDownvote, BiCommentDetail } from 'react-icons/bi'
+import { Header } from '../components/Header'
+import { asyncPopulateUsersAndThreads } from '../states/shared/action'
 import {
   asyncDownVoteThread,
-  asyncUpVoteThread,
-} from "../states/thread/action";
+  asyncUpVoteThread
+} from '../states/thread/action'
 
-function Home() {
-  const { threads = [], authUser, users } = useSelector((states) => states);
+function Home () {
+  const { threads = [], authUser, users } = useSelector((states) => states)
 
-  const dispatch = useDispatch();
+  const dispatch = useDispatch()
 
   useEffect(() => {
-    dispatch(asyncPopulateUsersAndThreads({ isLoading: true }));
-  }, [dispatch]);
+    dispatch(asyncPopulateUsersAndThreads({ isLoading: true }))
+  }, [dispatch])
 
   const handleUpvote = (id) => {
-    dispatch(asyncUpVoteThread({ id }));
-    dispatch(asyncPopulateUsersAndThreads({ isLoading: false }));
-  };
+    dispatch(asyncUpVoteThread({ id }))
+    dispatch(asyncPopulateUsersAndThreads({ isLoading: false }))
+  }
 
   const handleDownvote = (id) => {
-    dispatch(asyncDownVoteThread({ id }));
-    dispatch(asyncPopulateUsersAndThreads({ isLoading: false }));
-  };
+    dispatch(asyncDownVoteThread({ id }))
+    dispatch(asyncPopulateUsersAndThreads({ isLoading: false }))
+  }
 
   return (
     <div className="dark:bg-gray-700 dark:text-white min-h-screen">
@@ -34,7 +34,7 @@ function Home() {
         <Header />
         <section className="max-w-5xl mt-8 mx-auto flex-wrap">
           {threads?.map((item, index) => {
-            const ownerThread = users.find((user) => user.id === item.ownerId);
+            const ownerThread = users.find((user) => user.id === item.ownerId)
             return (
               <>
                 <Link
@@ -72,8 +72,8 @@ function Home() {
                     onClick={() => handleUpvote(item.id)}
                     className={`flex items-center border rounded-full p-2 gap-1 cursor-pointer ${
                       item?.upVotesBy?.includes(authUser.id)
-                        ? "bg-green-500 text-white"
-                        : "bg-white"
+                        ? 'bg-green-500 text-white'
+                        : 'bg-white'
                     }`}
                   >
                     <BiUpvote /> {item?.upVotesBy?.length}
@@ -82,8 +82,8 @@ function Home() {
                     onClick={() => handleDownvote(item.id)}
                     className={`flex items-center border rounded-full p-2 gap-1 cursor-pointer ${
                       item?.downVotesBy?.includes(authUser.id)
-                        ? "bg-red-500 text-white"
-                        : "bg-white"
+                        ? 'bg-red-500 text-white'
+                        : 'bg-white'
                     }`}
                   >
                     <BiDownvote /> {item?.downVotesBy?.length}
@@ -93,12 +93,12 @@ function Home() {
                   </div>
                 </div>
               </>
-            );
+            )
           })}
         </section>
       </div>
     </div>
-  );
+  )
 }
 
-export default Home;
+export default Home

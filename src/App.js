@@ -1,28 +1,28 @@
-import React, { useEffect } from "react";
-import { Route, Routes } from "react-router-dom";
-import Login from "./pages/Login";
-import Register from "./pages/Register";
-import { asyncPreloadProcess } from "./states/isPreload/action";
-import { useDispatch, useSelector } from "react-redux";
-import Home from "./pages/Home";
-import Loading from "./components/LoadingBar";
-import CreateThread from "./pages/CreateThread";
-import Leaderboards from "./pages/Leaderboards";
-import DetailThread from "./pages/DetailThread";
+import React, { useEffect } from 'react'
+import { Route, Routes } from 'react-router-dom'
+import Login from './pages/Login'
+import Register from './pages/Register'
+import { asyncPreloadProcess } from './states/isPreload/action'
+import { useDispatch, useSelector } from 'react-redux'
+import Home from './pages/Home'
+import Loading from './components/LoadingBar'
+import CreateThread from './pages/CreateThread'
+import Leaderboards from './pages/Leaderboards'
+import DetailThread from './pages/DetailThread'
 
-function App() {
+function App () {
   const { authUser = null, isPreload = false } = useSelector(
     (states) => states
-  );
+  )
 
-  const dispatch = useDispatch();
+  const dispatch = useDispatch()
 
   useEffect(() => {
-    dispatch(asyncPreloadProcess());
-  }, [dispatch]);
+    dispatch(asyncPreloadProcess())
+  }, [dispatch])
 
   if (isPreload) {
-    return null;
+    return null
   }
   if (authUser === null) {
     return (
@@ -33,7 +33,7 @@ function App() {
           <Route path="/register" element={<Register />} />
         </Routes>
       </>
-    );
+    )
   }
 
   return (
@@ -46,7 +46,7 @@ function App() {
         <Route path="/:id" element={<DetailThread />} />
       </Routes>
     </>
-  );
+  )
 }
 
-export default App;
+export default App

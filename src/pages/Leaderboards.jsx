@@ -1,18 +1,18 @@
-import React, { useEffect} from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { Header } from "../components/Header";
-import { asyncPopulateUsersAndThreads } from "../states/shared/action";
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { Header } from '../components/Header'
+import { asyncPopulateUsersAndThreads } from '../states/shared/action'
 
-function Leaderboards() {
-  const { leaderboards = [] } = useSelector((states) => states);
+function Leaderboards () {
+  const { leaderboards = [] } = useSelector((states) => states)
 
-  const dispatch = useDispatch();
+  const dispatch = useDispatch()
 
   useEffect(() => {
-    dispatch(asyncPopulateUsersAndThreads({isLoading: true}));
-  }, [dispatch]);
+    dispatch(asyncPopulateUsersAndThreads({ isLoading: true }))
+  }, [dispatch])
 
-  console.log(leaderboards);
+  console.log(leaderboards)
   return (
     <div className="dark:bg-gray-700 dark:text-white min-h-screen">
       <div className="max-w-3xl mx-auto">
@@ -35,7 +35,7 @@ function Leaderboards() {
         </section>
       </div>
     </div>
-  );
+  )
 }
 
-export default Leaderboards;
+export default Leaderboards

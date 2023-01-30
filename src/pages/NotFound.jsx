@@ -1,7 +1,7 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React from 'react'
+import { Link } from 'react-router-dom'
 
-function NotFound() {
+function NotFound () {
   return (
     <div className="dark:bg-gray-700 dark:text-white min-h-screen">
       <div className="py-12 text-center">
@@ -9,7 +9,7 @@ function NotFound() {
         <Link to="/"> Kembali ke Home</Link>
       </div>
     </div>
-  );
+  )
 }
 
-export default NotFound;
+export default NotFound

@@ -1,21 +1,21 @@
-import React, { useEffect, useState } from "react";
-import { BiCommentDetail, BiDownvote, BiUpvote } from "react-icons/bi";
-import { useDispatch, useSelector } from "react-redux";
-import { Link, useParams } from "react-router-dom";
-import { asyncReceiveThreadDetail } from "../states/threadDetail/action";
-import { FiSend } from "react-icons/fi";
-import { asyncAddComment } from "../states/comment/action";
+import React, { useEffect, useState } from 'react'
+import { BiCommentDetail, BiDownvote, BiUpvote } from 'react-icons/bi'
+import { useDispatch, useSelector } from 'react-redux'
+import { Link, useParams } from 'react-router-dom'
+import { asyncReceiveThreadDetail } from '../states/threadDetail/action'
+import { FiSend } from 'react-icons/fi'
+import { asyncAddComment } from '../states/comment/action'
 
-function DetailThread() {
-  const { id } = useParams();
-  const { threadDetail } = useSelector((states) => states);
-  const [content, setContent] = useState("");
+function DetailThread () {
+  const { id } = useParams()
+  const { threadDetail } = useSelector((states) => states)
+  const [content, setContent] = useState('')
 
-  const dispatch = useDispatch();
+  const dispatch = useDispatch()
 
   useEffect(() => {
-    dispatch(asyncReceiveThreadDetail(id));
-  }, [id, dispatch]);
+    dispatch(asyncReceiveThreadDetail(id))
+  }, [id, dispatch])
 
   if (!threadDetail) {
     return (
@@ -25,14 +25,14 @@ function DetailThread() {
           <Link to="/"> Kembali ke Home</Link>
         </div>
       </div>
-    );
+    )
   }
 
   const submitComment = () => {
-    dispatch(asyncAddComment({ id, content }));
-    dispatch(asyncReceiveThreadDetail(id));
-    setContent("");
-  };
+    dispatch(asyncAddComment({ id, content }))
+    dispatch(asyncReceiveThreadDetail(id))
+    setContent('')
+  }
 
   return (
     <div className="dark:bg-gray-700 dark:text-white min-h-screen">
@@ -70,7 +70,7 @@ function DetailThread() {
             className="border p-2 rounded focus:outline-none w-full dark:bg-gray-600 dark:text-white"
             value={content}
             onChange={(e) => setContent(e.target.value)}
-            onKeyDown={(e) => e.key === "Enter" && submitComment()}
+            onKeyDown={(e) => e.key === 'Enter' && submitComment()}
           />
           <FiSend
             size={24}
@@ -105,7 +105,7 @@ function DetailThread() {
         ))}
       </div>
     </div>
-  );
+  )
 }
 
-export default DetailThread;
+export default DetailThread
