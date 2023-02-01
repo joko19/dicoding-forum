@@ -1,9 +1,19 @@
 import api from '../../utils/api'
 
 const ActionType = {
+  ADD_COMMENT: 'ADD_COMMENT',
   RECEIVE_THREAD_DETAIL: 'RECEIVE_THREAD_DETAIL',
   CLEAR_THREAD_DETAIL: 'CLEAR_THREAD_DETAIL',
   TOGGLE_LIKE_THREAD_DETAIL: 'TOGGLE_LIKE_THREAD_DETAIL'
+}
+
+function addCommentActionCreator (comment) {
+  return {
+    type: ActionType.ADD_COMMENT,
+    payload: {
+      comment
+    }
+  }
 }
 
 function receiveThreadDetailActionCreator (threadDetail) {
@@ -26,6 +36,17 @@ function toggleLikeThreadDetailActionCreator (userId) {
     type: ActionType.TOGGLE_LIKE_THREAD_DETAIL,
     payload: {
       userId
+    }
+  }
+}
+
+function asyncAddComment ({ id, content }) {
+  return async (dispatch) => {
+    try {
+      const comment = await api.createComment({ id, content })
+      dispatch(addCommentActionCreator(comment))
+    } catch (error) {
+      alert(error.message)
     }
   }
 }
@@ -60,5 +81,7 @@ export {
   clearThreadDetailActionCreator,
   toggleLikeThreadDetailActionCreator,
   asyncReceiveThreadDetail,
-  asyncToogleLikeThreadDetail
+  asyncToogleLikeThreadDetail,
+  addCommentActionCreator,
+  asyncAddComment
 }

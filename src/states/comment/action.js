@@ -1,17 +1,7 @@
 import api from '../../utils/api'
 
 const ActionType = {
-  ADD_COMMENT: 'ADD_COMMENT',
   TOGGLE_LIKE_COMMENT: 'TOGGLE_LIKE_COMMENT'
-}
-
-function addCommentActionCreator (comment) {
-  return {
-    type: ActionType.ADD_COMMENT,
-    payload: {
-      comment
-    }
-  }
 }
 
 function toggleLikeCommentActionCreator ({ commentId, userId }) {
@@ -20,17 +10,6 @@ function toggleLikeCommentActionCreator ({ commentId, userId }) {
     payload: {
       commentId,
       userId
-    }
-  }
-}
-
-function asyncAddComment ({ id, content }) {
-  return async (dispatch) => {
-    try {
-      const comment = await api.createComment({ id, content })
-      dispatch(addCommentActionCreator(comment))
-    } catch (error) {
-      alert(error.message)
     }
   }
 }
@@ -51,8 +30,6 @@ function asyncToogleLikeComment (commentId) {
 
 export {
   ActionType,
-  addCommentActionCreator,
   toggleLikeCommentActionCreator,
-  asyncAddComment,
   asyncToogleLikeComment
 }

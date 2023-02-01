@@ -4,8 +4,6 @@ function threadDetailReducer (threadDetail = null, action = {}) {
   switch (action.type) {
     case ActionType.RECEIVE_THREAD_DETAIL:
       return action.payload.threadDetail
-    case ActionType.CLEAR_THREAD_DETAIL:
-      return null
     case ActionType.TOGGLE_LIKE_THREAD_DETAIL:
       return {
         ...threadDetail,
@@ -13,6 +11,10 @@ function threadDetailReducer (threadDetail = null, action = {}) {
           ? threadDetail.likes.filter((id) => id !== action.payload.userId)
           : threadDetail.likes.concat(action.payload.userId)
       }
+    case ActionType.ADD_COMMENT:
+      return { ...threadDetail, comment: [action.payload.comment, ...threadDetail.comments] }
+    case ActionType.CLEAR_THREAD_DETAIL:
+      return null
     default:
       return threadDetail
   }

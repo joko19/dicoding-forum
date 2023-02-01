@@ -2,9 +2,8 @@ import React, { useEffect, useState } from 'react'
 import { BiCommentDetail, BiDownvote, BiUpvote } from 'react-icons/bi'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useParams } from 'react-router-dom'
-import { asyncReceiveThreadDetail } from '../states/threadDetail/action'
+import { asyncAddComment, asyncReceiveThreadDetail } from '../states/threadDetail/action'
 import { FiSend } from 'react-icons/fi'
-import { asyncAddComment } from '../states/comment/action'
 
 function DetailThread () {
   const { id } = useParams()
