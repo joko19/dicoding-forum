@@ -36,11 +36,10 @@ function Home () {
           {threads?.map((item, index) => {
             const ownerThread = users.find((user) => user.id === item.ownerId)
             return (
-              <>
+              <div key={index}>
                 <Link
                   to={`/${item?.id}`}
                   className="p-2 rounded my-8"
-                  key={index}
                 >
                   <div className="flex gap-2 items-center mb-2">
                     <img
@@ -71,9 +70,8 @@ function Home () {
                   <div
                     onClick={() => handleUpvote(item.id)}
                     className={`flex items-center border rounded-full p-2 gap-1 cursor-pointer ${
-                      item?.upVotesBy?.includes(authUser.id)
-                        ? 'bg-green-500 text-white'
-                        : 'bg-white'
+                      item?.upVotesBy?.includes(authUser.id) &&
+                        'bg-green-500 text-white'
                     }`}
                   >
                     <BiUpvote /> {item?.upVotesBy?.length}
@@ -81,9 +79,8 @@ function Home () {
                   <div
                     onClick={() => handleDownvote(item.id)}
                     className={`flex items-center border rounded-full p-2 gap-1 cursor-pointer ${
-                      item?.downVotesBy?.includes(authUser.id)
-                        ? 'bg-red-500 text-white'
-                        : 'bg-white'
+                      item?.downVotesBy?.includes(authUser.id) &&
+                        'bg-red-500 text-white'
                     }`}
                   >
                     <BiDownvote /> {item?.downVotesBy?.length}
@@ -92,7 +89,7 @@ function Home () {
                     <BiCommentDetail /> {item?.totalComments}
                   </div>
                 </div>
-              </>
+              </div>
             )
           })}
         </section>

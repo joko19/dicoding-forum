@@ -87,7 +87,8 @@ function DetailThread () {
               />
               <div>
                 <div>
-                  <div className="text-lg">{item.owner.name}</div>
+                  <div className="text-lg">{item.owner.name}
+           <span className='text-gray-500 text-xs'> {new Date(item?.createdAt).toDateString()}</span>  </div>
                   <div className="text-gray-500 dark:text-gray-300 text-sm">{item.content}</div>
                 </div>
                 <div className="flex gap-2 pb-2 mb-2">
