@@ -12,7 +12,6 @@ function Leaderboards () {
     dispatch(asyncPopulateUsersAndThreads({ isLoading: true }))
   }, [dispatch])
 
-  console.log(leaderboards)
   return (
     <div className="dark:bg-gray-700 dark:text-white min-h-screen">
       <div className="max-w-3xl mx-auto">
