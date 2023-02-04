@@ -18,14 +18,12 @@ function Home () {
     dispatch(asyncPopulateUsersAndThreads({ isLoading: true }))
   }, [dispatch])
 
-  const handleUpvote = (id) => {
-    dispatch(asyncUpVoteThread({ id }))
-    dispatch(asyncPopulateUsersAndThreads({ isLoading: false }))
+  const handleUpvote = (threadId) => {
+    dispatch(asyncUpVoteThread({ threadId, userId: authUser.id }))
   }
 
-  const handleDownvote = (id) => {
-    dispatch(asyncDownVoteThread({ id }))
-    dispatch(asyncPopulateUsersAndThreads({ isLoading: false }))
+  const handleDownvote = (threadId) => {
+    dispatch(asyncDownVoteThread({ threadId, userId: authUser.id }))
   }
 
   return (

@@ -1,4 +1,5 @@
 import api from '../../utils/api'
+import { asyncPopulateUsersAndThreads } from '../shared/action'
 
 const ActionType = {
   RECEIVE_THREADS: 'RECEIVE_THREADS',
@@ -25,20 +26,22 @@ function addThreadActionCreator (thread) {
   }
 }
 
-function upVoteThreadActionCreator ({ id }) {
+function upVoteThreadActionCreator ({ threadId, userId }) {
   return {
     type: ActionType.TOGGLE_UPVOTE_THREAD,
     payload: {
-      id
+      threadId,
+      userId
     }
   }
 }
 
-function downVoteThreadActionCreator ({ id }) {
+function downVoteThreadActionCreator ({ threadId, userId }) {
   return {
     type: ActionType.TOGGLE_DOWNVOTE_THREAD,
     payload: {
-      id
+      threadId,
+      userId
     }
   }
 }
@@ -54,28 +57,28 @@ function asyncAddThread ({ title, body, category }) {
   }
 }
 
-function asyncUpVoteThread ({ id }) {
+function asyncUpVoteThread ({ threadId, userId }) {
   return async (dispatch) => {
-    dispatch(upVoteThreadActionCreator({ id }))
+    dispatch(upVoteThreadActionCreator({ threadId, userId }))
 
     try {
-      await api.upVoteThread(id)
+      await api.upVoteThread(threadId)
     } catch (error) {
       alert(error.message)
-      dispatch(upVoteThreadActionCreator({ id }))
+      dispatch(asyncPopulateUsersAndThreads({ isLoading: false }))
     }
   }
 }
 
-function asyncDownVoteThread ({ id }) {
+function asyncDownVoteThread ({ threadId, userId }) {
   return async (dispatch) => {
-    dispatch(downVoteThreadActionCreator({ id }))
+    dispatch(downVoteThreadActionCreator({ threadId, userId }))
 
     try {
-      await api.downVoteThread(id)
+      await api.downVoteThread(threadId)
     } catch (error) {
       alert(error.message)
-      dispatch(downVoteThreadActionCreator({ id }))
+      dispatch(asyncPopulateUsersAndThreads({ isLoading: false }))
     }
   }
 }
