@@ -194,10 +194,10 @@ const api = (() => {
     }
 
     const {
-      data: { thread }
+      data: { comment }
     } = responseJson
 
-    return thread
+    return comment
   }
 
   async function upVoteThread (id) {

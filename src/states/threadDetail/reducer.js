@@ -12,7 +12,7 @@ function threadDetailReducer (threadDetail = null, action = {}) {
           : threadDetail.likes.concat(action.payload.userId)
       }
     case ActionType.ADD_COMMENT:
-      return { ...threadDetail, comment: [action.payload.comment, ...threadDetail.comments] }
+      return { ...threadDetail, comments: [action.payload.comment, ...threadDetail.comments] }
     case ActionType.CLEAR_THREAD_DETAIL:
       return null
     default:

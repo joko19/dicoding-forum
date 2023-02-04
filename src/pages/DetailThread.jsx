@@ -50,7 +50,10 @@ function DetailThread () {
           </div>
         </div>
         <div className="font-bold text-lg">{threadDetail.title}</div>
-        <p className="py-2 text-lg">{threadDetail.body}</p>
+        <div
+          dangerouslySetInnerHTML={{ __html: threadDetail?.body }}
+          className="py-2 text-lg"
+        />
         <div className="flex gap-2 pb-2 mb-2">
           <div className="flex items-center border rounded-full p-2 gap-1">
             <BiUpvote /> {threadDetail.upVotesBy.length}

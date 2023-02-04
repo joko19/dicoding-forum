@@ -57,9 +57,7 @@ function Home () {
                   <h1 className="text-xl text-blue-500 dark:text-blue-400 font-medium">
                     {item?.title}
                   </h1>
-                  <div className="text-gray-500 dark:text-gray-300 line-clamp-3">
-                    {item?.body}
-                  </div>
+                  <div className="text-gray-500 dark:text-gray-300 line-clamp-3" dangerouslySetInnerHTML={{ __html: item?.body }}/>
                   {item?.category && (
                     <div className="text-xs bg-green-200 text-green-700 my-2 inline-flex rounded-full py-1 px-3">
                       {item.category}
